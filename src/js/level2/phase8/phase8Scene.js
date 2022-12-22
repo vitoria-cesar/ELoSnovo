@@ -212,25 +212,25 @@ function alternateFire()
     if(gridMapHelper.fireHoles[3].active && gridMapHelper.fireHoles[5].active)
     {
         gridMapHelper.fireHoles[3].active = false
-        fireHole4.visible = false
         gridMapHelper.fireHoles[5].active = false
+        fireHole4.visible = false
         fireHole6.visible = false
 
         gridMapHelper.fireHoles[4].active = true
-        fireHole5.visible = true
         gridMapHelper.fireHoles[6].active = true
+        fireHole5.visible = true
         fireHole7.visible = true
     }
     else
     {
         gridMapHelper.fireHoles[3].active = true
-        fireHole4.visible = true
         gridMapHelper.fireHoles[5].active = true
+        fireHole4.visible = true
         fireHole6.visible = true
 
         gridMapHelper.fireHoles[4].active = false
-        fireHole5.visible = false
         gridMapHelper.fireHoles[6].active = false
+        fireHole5.visible = false
         fireHole7.visible = false
     }
 }
@@ -359,7 +359,7 @@ function coletarCristal()
         printOnConsole("Robô não está sobre o cristal.")
     }
 
-    if(!objective1.visible && !objective2.visible)
+    if(!objective1.visible && !objective2.visible && objective3.visible)
     {
         printOnConsole("Todos os cristais coletados com sucesso!")
     }
@@ -374,17 +374,17 @@ function resetLevel()
     actor.rotation.set(0,degreeToRadians(90),0)
     actor.getObjectByName('eve').rotation.set(0,0,0)
     gridMapHelper.restartHoles()
+    gridMapHelper.fireHoles[3].active = true
+    gridMapHelper.fireHoles[5].active = true
     fireHole.visible = true
     fireHole2.visible = true
     fireHole3.visible = true
-    gridMapHelper.fireHoles[3].active = true
     fireHole4.visible = true
-    gridMapHelper.fireHoles[5].active = true
     fireHole6.visible = true
 
     gridMapHelper.fireHoles[4].active = false
-    fireHole5.visible = false
     gridMapHelper.fireHoles[6].active = false
+    fireHole5.visible = false
     fireHole7.visible = false
     objective1.visible = true
     objective2.visible = true

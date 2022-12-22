@@ -18,6 +18,7 @@ import
 import Fire from '../../helpers/FireObject/Fire'
 import {editor,readOnlyState} from '../../components/global/editor'
 import { parseCode } from '../../level2/level2Parser'
+import { CSG } from '../../helpers/CSGMesh'
 
 const scene = new THREE.Scene()
 
@@ -72,6 +73,26 @@ const fireHole = new Fire(fireTex)
 fireHole.scale.set(1.2, 3.0, 1.2)
 fireHole.position.set(gridMapHelper.getGlobalXPositionFromCoord(7),1.5,gridMapHelper.getGlobalZPositionFromCoord(5))
 gridMapHelper.addFireHole(7,5)
+
+const cylinderMesh1 = new THREE.Mesh(new THREE.CylinderGeometry(1, 1, 0.5, 32))
+const cylinderMesh2 = new THREE.Mesh(new THREE.CylinderGeometry(0.5, 0.5, 1, 32))
+
+cylinderMesh2.position.set(gridMapHelper.getGlobalXPositionFromCoord(4.5),0.25,gridMapHelper.getGlobalZPositionFromCoord(4.5))
+cylinderMesh2.matrixAutoUpdate = false
+cylinderMesh2.updateMatrix()
+
+const cylinderCSG1 = CSG.fromMesh(cylinderMesh1)
+const cylinderCSG2 = CSG.fromMesh(cylinderMesh2)
+
+const cylindersSubtractCSG = cylinderCSG1.subtract(cylinderCSG2)
+const cylindersSubtractMesh = CSG.toMesh(cylindersSubtractCSG, new THREE.Matrix4())
+
+const cylinderTexPath = new URL('../../../assets/textures/tijolo.jpg',import.meta.url).toString()
+const cylinderTex = new THREE.TextureLoader().load(cylinderTexPath)
+cylindersSubtractMesh.material.map = cylinderTex
+cylindersSubtractMesh.position.set(gridMapHelper.getGlobalXPositionFromCoord(7),0.25,gridMapHelper.getGlobalZPositionFromCoord(5))
+scene.add(cylindersSubtractMesh)
+
 
 scene.add(ambientLight)
 scene.add(mainLight)

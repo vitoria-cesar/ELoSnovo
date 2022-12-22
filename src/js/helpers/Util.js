@@ -162,7 +162,6 @@ export function translateActorBackward(actor,amount,gridMapHelper,scenePropertie
                 if(trap && !sceneProperties.cancelExecution)
                 {
                     printOnConsole("Você caiu na armadilha.")
-                    sceneProperties.cancelExecution = true   
                 }
                 leanMovement(actor.getObjectByName('eve'),false)
                 cancelAnimationFrame(requestID)
@@ -497,3 +496,4 @@ export function displayTime(time)
     let seg = Math.floor(time % 60)
     timerDisplay.innerText = `Tempo: ${hour < 10 ? '0' + hour : hour}:${(min < 10 ? '0' + min : min)}:${(seg < 10 ? '0' + seg : seg)}`
 }
+
