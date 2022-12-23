@@ -74,8 +74,8 @@ fireHole.scale.set(1.2, 3.0, 1.2)
 fireHole.position.set(gridMapHelper.getGlobalXPositionFromCoord(7),1.5,gridMapHelper.getGlobalZPositionFromCoord(5))
 gridMapHelper.addFireHole(7,5)
 
-const cylinderMesh1 = new THREE.Mesh(new THREE.CylinderGeometry(1, 1, 0.5, 32))
-const cylinderMesh2 = new THREE.Mesh(new THREE.CylinderGeometry(0.5, 0.5, 1, 32))
+const cylinderMesh1 = new THREE.Mesh(new THREE.CylinderGeometry(1, 1, 1, 32))
+const cylinderMesh2 = new THREE.Mesh(new THREE.CylinderGeometry(0.7, 0.7, 1, 32))
 
 cylinderMesh2.position.set(gridMapHelper.getGlobalXPositionFromCoord(4.5),0.25,gridMapHelper.getGlobalZPositionFromCoord(4.5))
 cylinderMesh2.matrixAutoUpdate = false
@@ -87,12 +87,26 @@ const cylinderCSG2 = CSG.fromMesh(cylinderMesh2)
 const cylindersSubtractCSG = cylinderCSG1.subtract(cylinderCSG2)
 const cylindersSubtractMesh = CSG.toMesh(cylindersSubtractCSG, new THREE.Matrix4())
 
-const cylinderTexPath = new URL('../../../assets/textures/tijolo.jpg',import.meta.url).toString()
+const cylinderTexPath = new URL('../../../assets/textures/tijolo.jfif',import.meta.url).toString()
 const cylinderTex = new THREE.TextureLoader().load(cylinderTexPath)
-cylindersSubtractMesh.material.map = cylinderTex
-cylindersSubtractMesh.position.set(gridMapHelper.getGlobalXPositionFromCoord(7),0.25,gridMapHelper.getGlobalZPositionFromCoord(5))
-scene.add(cylindersSubtractMesh)
 
+cylindersSubtractMesh.material.map = cylinderTex
+cylindersSubtractMesh.position.set(gridMapHelper.getGlobalXPositionFromCoord(7),0.5,gridMapHelper.getGlobalZPositionFromCoord(5))
+
+const cylinderMesh3 = new THREE.Mesh(new THREE.CylinderGeometry(0.7, 0.7, 1, 64))
+const cylinderMesh4 = new THREE.Mesh(new THREE.CylinderGeometry(0.5, 0.5, 1.7, 64))
+
+cylinderMesh4.position.set(gridMapHelper.getGlobalXPositionFromCoord(4.5),0.25,gridMapHelper.getGlobalZPositionFromCoord(4.5))
+cylinderMesh4.matrixAutoUpdate = false
+cylinderMesh4.updateMatrix()
+
+const cylinderCSG3 = CSG.fromMesh(cylinderMesh3)
+const cylinderCSG4 = CSG.fromMesh(cylinderMesh4)
+
+const cylindersSubtractCSG1 = cylinderCSG3.subtract(cylinderCSG4)
+const cylindersSubtractMesh1 = CSG.toMesh(cylindersSubtractCSG1, new THREE.Matrix4())
+cylindersSubtractMesh1.material = new THREE.MeshPhongMaterial({color: 'black'})
+cylindersSubtractMesh1.position.set(gridMapHelper.getGlobalXPositionFromCoord(7),0.5,gridMapHelper.getGlobalZPositionFromCoord(5))
 
 scene.add(ambientLight)
 scene.add(mainLight)
@@ -102,6 +116,8 @@ scene.add(actor)
 scene.add(box1)
 scene.add(box2)
 scene.add(fireHole)
+scene.add(cylindersSubtractMesh)
+scene.add(cylindersSubtractMesh1)
 
 function animate() {
     requestAnimationFrame(animate)
