@@ -87,13 +87,13 @@ const cylinderCSG2 = CSG.fromMesh(cylinderMesh2)
 const cylindersSubtractCSG = cylinderCSG1.subtract(cylinderCSG2)
 const cylindersSubtractMesh = CSG.toMesh(cylindersSubtractCSG, new THREE.Matrix4())
 
-const cylinderTexPath = new URL('../../../assets/textures/tijolo.jfif',import.meta.url).toString()
+const cylinderTexPath = new URL('../../../assets/textures/tijolo 4.avif',import.meta.url).toString()
 const cylinderTex = new THREE.TextureLoader().load(cylinderTexPath)
 
 cylindersSubtractMesh.material.map = cylinderTex
 cylindersSubtractMesh.position.set(gridMapHelper.getGlobalXPositionFromCoord(7),0.5,gridMapHelper.getGlobalZPositionFromCoord(5))
 
-const cylinderMesh3 = new THREE.Mesh(new THREE.CylinderGeometry(0.7, 0.7, 1, 64))
+const cylinderMesh3 = new THREE.Mesh(new THREE.CylinderGeometry(0.8, 0.7, 1.1, 64))
 const cylinderMesh4 = new THREE.Mesh(new THREE.CylinderGeometry(0.5, 0.5, 1.7, 64))
 
 cylinderMesh4.position.set(gridMapHelper.getGlobalXPositionFromCoord(4.5),0.25,gridMapHelper.getGlobalZPositionFromCoord(4.5))
