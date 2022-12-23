@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "start": "parcel src/html/**/*.html --no-source-maps",
-    "build": "parcel build src/html/**/*.html --no-source-maps --public-url https://AVRGroup.github.io/ELoS/",
+    "build": "parcel build src/html/**/*.html --no-source-maps --public-url https://vitoria-cesar.github.io/ELoSnovo/",
     "deploy": "gh-pages -d dist"
   },
   "repository": {
